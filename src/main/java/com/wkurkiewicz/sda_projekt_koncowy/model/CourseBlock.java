@@ -19,7 +19,7 @@ public class CourseBlock {
     private Integer id;
     @OneToMany(mappedBy = "courseBlock")
     private List<Classes> classes;
-//    @ManyToOne
-//    @JoinColumn(name = "course_id")
-//    private Course course;
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
 }
