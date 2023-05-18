@@ -1,13 +1,15 @@
 package model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+
+
 
 @Entity
 @AllArgsConstructor
@@ -15,10 +17,16 @@ import lombok.RequiredArgsConstructor;
 @Builder
 @RequiredArgsConstructor
 public class User {
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer id;
+    @Size(min = 2, max = 20)
+    @Column(name = "first_name")
     private String firstName;
+    @Size(min = 2, max = 20)
     private String lastName;
-
     private String email;
-    @AssertTrue
-    private boolean isPremium;
+    private boolean isActive = true;
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
 }
