@@ -27,7 +27,7 @@ public class User {
     @Column(name = "email")
     private String email;
     @Column(name = "active")
-    private boolean isActive = true;
+    private Boolean isActive = true;
     @Enumerated(EnumType.STRING)
     @Column(name = "user_type")
     private UserType userType;
