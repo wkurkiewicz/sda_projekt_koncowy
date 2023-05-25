@@ -25,13 +25,11 @@
                 <div class="card" style="width: 100%; margin-bottom: 25px;">
                     <!--  <img src="..." class="card-img-top" alt="...">-->
                     <div class="card-body">
-                        <h5 class="card-title custom-center" th:text="${user.name}">Card title</h5>
+                        <h5 class="card-title custom-center" th:text="${user.id}">Card title</h5>
                         <a th:href="@{/users/details/__${user.id}__}">
-                            <img th:src="@{/img/__${plant.imageName}__}" width="380" height="400"/>
                         </a>
                         <p class="card-text custom-center" style="font-size: 20px; margin-right: auto; margin-left: auto"
                            th:text="${user.firstName} + ${user.lastName}"></p>
-                        <a href="#" style="width: 100%;" class="btn btn-primary">Dodaj do koszyka</a>
                     </div>
                 </div>
             </div>
