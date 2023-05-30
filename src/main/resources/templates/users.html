@@ -29,7 +29,7 @@
                         <a th:href="@{/users/details/__${user.id}__}">
                         </a>
                         <p class="card-text custom-center" style="font-size: 20px; margin-right: auto; margin-left: auto"
-                           th:text="${user.firstName} + ${user.lastName}"></p>
+                           th:text="${user.firstName} + ' ' + ${user.lastName}"></p>
                     </div>
                 </div>
             </div>

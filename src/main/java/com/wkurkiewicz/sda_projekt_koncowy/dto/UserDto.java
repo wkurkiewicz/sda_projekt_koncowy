@@ -14,4 +14,6 @@ public class UserDto {
     private String lastName;
     private String email;
     private UserType userType;
+    private String imageName;
+    private String selectedUserType;
 }
