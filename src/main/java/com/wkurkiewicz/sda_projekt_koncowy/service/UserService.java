@@ -27,7 +27,7 @@ public class UserService {
         return userRepository.findAll().stream().map(u -> new UserDto(u.getId(),u.getFirstName(), u.getLastName(), u.getEmail(), u.getUserType(), u.getImageName(), null)).toList();
     }
     public void addUser(UserDto userDto, MultipartFile file) {
-        User user = new User (userDto.getFirstName(), userDto.getLastName(), userDto.getEmail(), UserType.valueOf(userDto.getSelectedUserType()));
+        User user = new User (userDto.getFirstName(), userDto.getLastName(), userDto.getEmail(), UserType.valueOf(userDto.getSelectedUserType()),  userDto.getImageName());
         userRepository.save(user);
         saveUserImage(file);
     }

@@ -27,7 +27,10 @@
                     <div class="card-body">
                         <h5 class="card-title custom-center" th:text="${user.id}">Card title</h5>
                         <a th:href="@{/users/details/__${user.id}__}">
+                            <img th:src="@{/uploads/__${user.imageName}__}" width="100%"/>
                         </a>
+                        <p class="card-text custom-center" style="font-size: 20px; margin-right: auto; margin-left: auto"
+                           th:text="${user.userType}"></p>
                         <p class="card-text custom-center" style="font-size: 20px; margin-right: auto; margin-left: auto"
                            th:text="${user.firstName} + ' ' + ${user.lastName}"></p>
                     </div>

@@ -34,18 +34,14 @@ public class User {
     //Spring Hibernate zmapuje to z imageName -> image_name
     private String imageName;
 
-    public User(String firstName, String lastName, String email, UserType userType) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.userType = userType;
-    }
+
 
     public User(String firstName, String lastName, String email, UserType userType, String imageName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.userType = userType;
         this.imageName = imageName;
+        this.userType = userType;
+
     }
 }
