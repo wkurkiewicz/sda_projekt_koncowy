@@ -1,6 +1,7 @@
 package com.wkurkiewicz.sda_projekt_koncowy.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,6 +26,7 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
     @Column(name = "email")
+    @Email
     private String email;
     @Column(name = "active")
     private Boolean isActive = true;
@@ -32,7 +34,6 @@ public class User {
     @Column(name = "user_type")
     private UserType userType;
     //Spring Hibernate zmapuje to z imageName -> image_name
-
     private String imageName;
 
 

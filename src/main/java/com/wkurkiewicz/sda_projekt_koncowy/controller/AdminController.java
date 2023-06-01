@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.wkurkiewicz.sda_projekt_koncowy.EmailValidator.validateEmail;
+
 @Controller
 @RequestMapping("/admin")
 @RequiredArgsConstructor
@@ -38,12 +40,17 @@ public class AdminController {
     public ModelAndView addUser(UserDto userDto, @RequestParam(value = "image", required = false) MultipartFile file) {
         if (userDto.getFirstName().length() < 2 || userDto.getFirstName().length() > 30){
             ModelAndView model = new ModelAndView("redirect:/admin/users");
-            model.addObject("message", "Imię powinno mieć długość pomiędzy 3 a 30 znaków");
+            model.addObject("message", "wrongFirstName");
             return model;
         }
         if (userDto.getLastName().length() < 2 || userDto.getLastName().length() > 40){
             ModelAndView model = new ModelAndView("redirect:/admin/users");
-            model.addObject("message", "Nazwisko powinno mieć długość pomiędzy 3 a 30 znaków");
+            model.addObject("message", "wrongLastName");
+            return model;
+        }
+        if (!validateEmail(userDto.getEmail())){
+            ModelAndView model = new ModelAndView("redirect:/admin/users");
+            model.addObject("message", "wrongEmail");
             return model;
         }
         userDto.setImageName(file.getOriginalFilename());

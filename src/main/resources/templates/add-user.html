@@ -23,16 +23,22 @@
   <div class="row">
 
     <form th:action="@{/admin/users/add}" th:object="${newUser}" method="post" enctype="multipart/form-data">
-      <div th:if="${message!=null}">
-        <p th:text="${message}"></p>
+      <div th:if="${message=='wrongFirstName'}">
+        <h2 style="color: red;">Imię powinno mieć długość pomiędzy 3 a 30 znaków.</h2>
       </div>
       <div class="mb-3">
         <label for="firstname" class="form-label">Imię</label>
         <input type="text" class="form-control" id="firstname" th:field="*{firstName}">
       </div>
+      <div th:if="${message=='wrongLastName'}">
+        <h2 style="color: red;">Nazwisko powinno mieć długość pomiędzy 3 a 40 znaków.</h2>
+      </div>
       <div class="mb-3">
         <label for="lastname" class="form-label">Nazwisko</label>
         <input type="text" class="form-control" id="lastname" th:field="*{lastName}">
+      </div>
+      <div th:if="${message=='wrongEmail'}">
+        <h2 style="color: red;">Niepoprawny adres email. </h2>
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
