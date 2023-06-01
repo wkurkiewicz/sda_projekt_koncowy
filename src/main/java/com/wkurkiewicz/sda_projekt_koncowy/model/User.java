@@ -32,6 +32,7 @@ public class User {
     @Column(name = "user_type")
     private UserType userType;
     //Spring Hibernate zmapuje to z imageName -> image_name
+
     private String imageName;
 
 

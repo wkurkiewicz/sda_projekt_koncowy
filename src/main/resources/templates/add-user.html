@@ -21,7 +21,11 @@
 
 <div class="container" style="margin-top:100px;">
   <div class="row">
+
     <form th:action="@{/admin/users/add}" th:object="${newUser}" method="post" enctype="multipart/form-data">
+      <div th:if="${message!=null}">
+        <p th:text="${message}"></p>
+      </div>
       <div class="mb-3">
         <label for="firstname" class="form-label">Imię</label>
         <input type="text" class="form-control" id="firstname" th:field="*{firstName}">
@@ -36,12 +40,15 @@
       </div>
       <div class="mb-3">
       <select class="form-control" th:field="*{selectedUserType}">
+        <!--
         <option th:value="${0}">Choose</option>
+        Po co jest ta linijka?
+        -->
         <option th:each="userType : ${userTypes}" th:text="${userType}" th:value="${userType}">
       </select>
         </div>
       <div class="mb-3">
-        <input type="file" class="form-control" name="image" accept="image/*"/>
+        <input type="file" class="form-control" name="image" accept="image/*" required/>
       </div>
       <button type="submit" class="btn btn-primary" style="width: 100%">Dodaj</button>
     </form>
