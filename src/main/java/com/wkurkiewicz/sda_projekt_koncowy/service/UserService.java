@@ -31,6 +31,9 @@ public class UserService {
         userRepository.save(user);
         saveUserImage(file);
     }
+    public void deleteUserById(Integer userId){
+        userRepository.deleteById(userId);
+    }
 
     private void saveUserImage(MultipartFile file) {
 

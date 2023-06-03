@@ -4,6 +4,7 @@ import com.wkurkiewicz.sda_projekt_koncowy.dto.UserDto;
 import com.wkurkiewicz.sda_projekt_koncowy.model.UserType;
 import com.wkurkiewicz.sda_projekt_koncowy.service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.wkurkiewicz.sda_projekt_koncowy.EmailValidator.validateEmail;
-
+@Slf4j
 @Controller
 @RequestMapping("/admin")
 @RequiredArgsConstructor
@@ -57,4 +58,13 @@ public class AdminController {
         userService.addUser(userDto, file);
         return new ModelAndView("redirect:/admin/users");
     }
+
+    @GetMapping
+    @RequestMapping("/users/delete")
+    public String deleteUser(@RequestParam(value="userId") Integer userId){
+//        log.info("userId= " + userId);
+        userService.deleteUserById(userId);
+        return "redirect:/users";
+    }
+
 }
