@@ -21,6 +21,7 @@ public class Classes {
     @Size(min = 2, max = 100)
     @Column(name = "name")
     private String name;
+    private String desription;
     @Column(name = "date")
     private LocalDate date;
     @ManyToOne

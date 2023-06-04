@@ -17,6 +17,9 @@ public class Course {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
+    private String name;
     @OneToMany(mappedBy = "course")
     private List<CourseBlock> courseBlocks;
+    private String imageName;
+    private String description;
 }
