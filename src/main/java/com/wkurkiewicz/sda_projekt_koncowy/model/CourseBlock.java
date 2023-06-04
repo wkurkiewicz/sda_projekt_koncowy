@@ -17,10 +17,12 @@ public class CourseBlock {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
+    private String name;
     private String description;
     @OneToMany(mappedBy = "courseBlock")
     private List<Classes> classes;
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "course_id")
     private Course course;
+    private String imageName;
 }
