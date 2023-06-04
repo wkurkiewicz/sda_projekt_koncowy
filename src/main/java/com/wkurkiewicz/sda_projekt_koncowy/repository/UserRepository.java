@@ -4,4 +4,6 @@ import com.wkurkiewicz.sda_projekt_koncowy.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
+
+    User findByUsername(String username);
 }

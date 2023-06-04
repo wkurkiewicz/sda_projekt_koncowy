@@ -26,7 +26,7 @@ public class AdminController {
     private final UserService userService;
 
     @GetMapping
-    @RequestMapping("/users")
+    @RequestMapping("/adduser")
     public String getAddUserView (Model model, @RequestParam(value="message", required = false) String message){
         if (message != null){
             model.addAttribute("message", message);
@@ -34,31 +34,37 @@ public class AdminController {
         model.addAttribute("newUser",new UserDto());
         List<String> usersList = Arrays.stream(UserType.values()).map(userType -> userType.name()).toList();
         model.addAttribute("userTypes",  usersList);
-        return "add-user";
+        return "admin-add-user";
     }
     @PostMapping
-    @RequestMapping("/users/add")
+    @RequestMapping("/adduser/add")
     public ModelAndView addUser(UserDto userDto, @RequestParam(value = "image", required = false) MultipartFile file) {
         if (userDto.getFirstName().length() < 2 || userDto.getFirstName().length() > 30){
-            ModelAndView model = new ModelAndView("redirect:/admin/users");
+            ModelAndView model = new ModelAndView("redirect:/admin/adduser");
             model.addObject("message", "wrongFirstName");
             return model;
         }
         if (userDto.getLastName().length() < 2 || userDto.getLastName().length() > 40){
-            ModelAndView model = new ModelAndView("redirect:/admin/users");
+            ModelAndView model = new ModelAndView("redirect:/admin/adduser");
             model.addObject("message", "wrongLastName");
             return model;
         }
         if (!validateEmail(userDto.getEmail())){
-            ModelAndView model = new ModelAndView("redirect:/admin/users");
+            ModelAndView model = new ModelAndView("redirect:/admin/adduses");
             model.addObject("message", "wrongEmail");
             return model;
         }
         userDto.setImageName(file.getOriginalFilename());
         userService.addUser(userDto, file);
-        return new ModelAndView("redirect:/admin/users");
+        return new ModelAndView("redirect:/admin/adduser");
     }
-
+    @GetMapping
+    @RequestMapping("/listusers")
+    public String users(Model model){
+        List<UserDto> usersFromDb = userService.getUsers();
+        model.addAttribute("users", usersFromDb);
+        return "users";
+    }
     @GetMapping
     @RequestMapping("/users/delete")
     public String deleteUser(@RequestParam(value="userId") Integer userId){

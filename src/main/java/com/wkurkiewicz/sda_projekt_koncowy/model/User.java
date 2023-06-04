@@ -35,7 +35,8 @@ public class User {
     private UserType userType;
     //Spring Hibernate zmapuje to z imageName -> image_name
     private String imageName;
-
+    private String username;
+    private String password;
 
 
     public User(String firstName, String lastName, String email, UserType userType, String imageName) {
